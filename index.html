@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>???</title>
+        <style>
+            * {
+                padding: 0px;
+                margin: 0px;
+                font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+                letter-spacing: 10px;
+                user-select: none;
+            }
+
+            h1 {
+                font-size: 150px; color: white;
+                position: absolute;
+                transform: translate(-50%,-50%);
+                top: 50%;
+                left: 50%;
+                text-shadow: 10px 10px 20px red;
+            }
+
+            html {
+                --primary: #191950;
+                --secondary: black;
+                background-image:
+                radial-gradient(midnightblue 9px, transparent 10px),
+                repeating-radial-gradient(var(--primary) 0, var(--primary) 4px, var(--secondary) 5px, var(--secondary) 20px, var(--primary) 21px, var(--primary) 25px, var(--secondary) 26px, var(--secondary) 50px);
+                background-size: 30px 30px, 90px 90px;
+                background-position: 0 0;
+            }
+
+            html:after {
+                content: " ";
+                background-image:radial-gradient(transparent 26%, black 60%);
+                height:100vh;
+                width:100vw;
+                position:absolute;
+                top:0;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 id='title'>???</h1>
+        <script>
+            let title = document.getElementById('title');
+            let html = document.querySelector('html');
+            let titleOffset = 0;
+            let shadowX = 0;
+            let shadowY = 0;
+            let bgOffset = 0;
+
+            function loop(rt = 0) {
+                titleOffset = Math.sin(rt/1000)*100;
+                shadowX = Math.sin(rt/650)*20;
+                shadowY = Math.sin(rt/1000)*40;
+                bgOffset = (rt/10) % 180;
+
+                title.style.top = `calc(50% + ${titleOffset}px)`;
+                title.style.textShadow = `0 0 8px #F00, ${shadowX}px ${shadowY}px 4px #000`;
+                html.style.backgroundPosition = `${bgOffset}px ${bgOffset}px`;
+                requestAnimationFrame(loop);
+            }
+
+            loop();
+        </script>
+    </body>
+</html>
